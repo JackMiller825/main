@@ -17,7 +17,7 @@ npm run dev
 
 The app listens on http://127.0.0.1:5173 and the API on http://127.0.0.1:3001.
 
-Every push to `main` on https://github.com/JackMiller825/main builds the demo frontend and deploys it to GitHub Pages at https://jackmiller825.github.io/main/. Pages serves that static demo only. The API and worker need their own host.
+Every push to `main` on https://github.com/JackMiller825/main builds the demo frontend and deploys it to GitHub Pages at https://ethlp.site/. Pages serves that static demo only. The API and worker need their own host.
 
 Screenshot fixtures, with display values only:
 
