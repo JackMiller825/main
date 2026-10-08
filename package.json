@@ -1,28 +1,35 @@
 {
-  "name": "muskpat",
+  "name": "eth-launchpad",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+  "engines": {
+    "node": ">=22.12"
   },
-  "dependencies": {
-    "framer-motion": "^14.0.0",
-    "lucide-react": "^1.52.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4"
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run build -w @launchpad/shared && npm run build -w @launchpad/contracts && cross-env APP_MODE=demo concurrently -k npm:dev:web npm:dev:api",
+    "dev:web": "npm run dev -w @launchpad/web",
+    "dev:api": "npm run dev -w @launchpad/api",
+    "dev:worker": "npm run dev -w @launchpad/worker",
+    "dev:live": "npm run build -w @launchpad/shared && npm run build -w @launchpad/contracts && cross-env APP_MODE=live concurrently -k npm:dev:web:live npm:dev:api npm:dev:worker",
+    "dev:web:live": "npm run dev:live -w @launchpad/web",
+    "build": "npm run build -w @launchpad/shared && npm run build -w @launchpad/contracts && npm run build -w @launchpad/api && npm run build -w @launchpad/worker && npm run build -w @launchpad/web",
+    "typecheck": "npm run build -w @launchpad/shared && npm run build -w @launchpad/contracts && npm run typecheck --workspaces --if-present",
+    "lint": "oxlint --ignore-pattern **/dist/** --ignore-pattern **/node_modules/** packages",
+    "test": "npm run build -w @launchpad/shared && npm run test -w @launchpad/shared && npm run test -w @launchpad/contracts && npm run test -w @launchpad/api",
+    "test:e2e": "npm run build -w @launchpad/shared && npm run test:e2e -w @launchpad/web",
+    "db:migrate": "npm run db:migrate -w @launchpad/api",
+    "db:seed:demo": "npm run db:seed:demo -w @launchpad/api",
+    "start:api": "npm run start -w @launchpad/api",
+    "start:worker": "npm run start -w @launchpad/worker"
   },
   "devDependencies": {
-    "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3",
     "oxlint": "^1.81.0",
-    "typescript": "~6.0.2",
-    "vite": "^8.3.0"
+    "typescript": "~5.9.3"
   }
 }

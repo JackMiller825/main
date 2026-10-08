@@ -425,7 +425,33 @@ a { color: inherit; }
   margin: 48px auto 0;
   filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.5));
 }
-.floating-chart { position: absolute; z-index: 1; left: 0; right: 0; bottom: 8%; width: 100%; }
+.floating-chart { position: absolute; z-index: 1; left: 0; right: 0; bottom: 8%; width: 100%; overflow: visible; }
+.chart-rocket {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  top: 0;
+  width: 108px;
+  height: 108px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transform-origin: 30% 70%;
+}
+.chart-rocket img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+.chart-rocket:hover img { filter: drop-shadow(0 0 14px rgba(36, 255, 65, 0.7)); }
+.chart-rocket:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.chart-rocket:disabled { cursor: default; }
 .chart-axis { stroke: rgba(112, 221, 255, 0.25); stroke-width: 1; }
 .wick { stroke-width: 1.4; }
 .wick-up, .body-up { stroke: var(--green); }
@@ -435,7 +461,6 @@ a { color: inherit; }
 .chart-path { fill: none; stroke: var(--green-2); stroke-width: 2; stroke-linecap: round; }
 .hero-sticker { position: absolute; z-index: 3; width: 112px; pointer-events: none; }
 .chart-sticker { top: 6%; right: 6%; }
-.rocket-sticker { left: 0; bottom: 14%; }
 .stage-readout {
   position: absolute;
   z-index: 4;

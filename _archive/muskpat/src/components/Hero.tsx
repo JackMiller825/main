@@ -90,7 +90,6 @@ export function Hero() {
             fetchPriority="high"
           />
           <img className="hero-sticker chart-sticker" src={asset("images/muskpat-sticker-chart-up.png")} alt="" width="120" height="104" />
-          <img className="hero-sticker rocket-sticker" src={asset("images/muskpat-sticker-rocket.png")} alt="" width="110" height="110" />
           <p className="stage-readout">
             <span>MISSION ACTIVE</span>
             <span>PATTERN DETECTED</span>
